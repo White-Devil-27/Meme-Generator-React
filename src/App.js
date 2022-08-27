@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { useState } from 'react';
+import Meme from './Components/Meme'; 
+import Header from './Components/Header'; 
+import "bootstrap/dist/css/bootstrap.min.css"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+// import "bootstrap/dist/css/bootstrap.min.css" 
 
-export default App;
+export default function App() {
+  const [darkMode,setDrakMode] = useState({
+    dark : false
+  })
+
+  function Toggle(e){
+
+    const {name,value} = e.target
+    console.log(e.target.value)
+
+    setDrakMode(prevState =>({
+      ...prevState,
+      [name] : value === "true" ? false : true
+    }))
+
+  }
+      return (
+            <div> 
+              <Header darkMode = {darkMode.dark} Dark={Toggle} />
+              <Meme darkMode = {darkMode.dark} />
+            </div> 
+          ) 
+
+} 
